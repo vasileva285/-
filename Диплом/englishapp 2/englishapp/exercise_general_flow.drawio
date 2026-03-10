@@ -1,0 +1,88 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Общий поток обработки упражнения">
+    <mxGraphModel dx="827" dy="1169" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Блоки -->
+        <mxCell id="start" value="Пользователь открывает страницу упражнения / мини-игры" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="40" width="360" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="loadTask" value="Система загружает из БД задание (текст, тип, варианты, правильный ответ, объяснение)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="130" width="360" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="showTask" value="Отображение задания и (если нужно) вариантов ответа на странице" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="230" width="360" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="userAnswer" value="Пользователь вводит ответ или выбирает вариант" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="320" width="360" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="sendAnswer" value="Отправка ответа на сервер (AJAX-запрос)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="410" width="360" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="serverGet" value="Сервер получает ответ и находит соответствующее упражнение в БД" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="500" width="360" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="checkType" value="Определение типа упражнения и проверка ответа в соответствии с типом" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="150" y="590" width="220" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="updateProgress" value="Сохранить попытку, начислить баллы (если ответ впервые правильный), обновить прогресс урока" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="80" y="690" width="360" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="serverResponse" value="Сервер возвращает результат проверки (правильно/нет, правильный ответ, объяснение, баллы, статус урока)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="790" width="360" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="frontendShow" value="Фронтенд показывает сообщение, правильный ответ и объяснение; при необходимости блокирует поля ввода" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="910" width="360" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="end" value="Пользователь видит результат и может перейти к следующему заданию" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="1020" width="240" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Стрелки -->
+        <mxCell id="e1" edge="1" parent="1" source="start" target="loadTask" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="loadTask" target="showTask" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="showTask" target="userAnswer" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="userAnswer" target="sendAnswer" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="sendAnswer" target="serverGet" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="serverGet" target="checkType" style="endArrow=block;strokeColor=#d6b656;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="checkType" target="updateProgress" style="endArrow=block;strokeColor=#82b366;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="updateProgress" target="serverResponse" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="serverResponse" target="frontendShow" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="frontendShow" target="end" style="endArrow=block;strokeColor=#9673a6;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load lesson_tags %}
+
+{% block title %}{{ lesson.title }} - EnglishApp{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-4">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Главная</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'category_detail' lesson.category.slug %}">{{ lesson.category.name }}</a></li>
+            <li class="breadcrumb-item active">{{ lesson.title }}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Теория -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        <i class="bi bi-book"></i> Теоретический материал
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="theory-content">
+                        {{ lesson.theory|linebreaks }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Примеры -->
+            {% if examples_list %}
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-lightbulb"></i> Примеры
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        {% for example in examples_list %}
+                        <li class="mb-2">
+                            <i class="bi bi-arrow-right text-primary"></i> 
+                            <span class="example-text">{{ example }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Упражнения -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-pencil-square"></i> Упражнения
+                    </h4>
+                </div>
+                <div class="card-body">
+                    {% if exercises %}
+                    <div class="list-group">
+                        {% for exercise in exercises %}
+                        <div class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">
+                                        <i class="bi bi-{{ exercise.exercise_type|default:'question'|slice:':1' }}"></i>
+                                        Упражнение {{ forloop.counter }}
+                                    </h6>
+                                    <p class="mb-1 text-muted">{{ exercise.question|truncatewords:15 }}</p>
+                                    <small class="text-muted">
+                                        <i class="bi bi-star"></i> {{ exercise.points }} баллов
+                                    </small>
+                                </div>
+                                <div class="ms-3 text-end">
+                                    {% if exercise.id in exercise_stats %}
+                                        {% with stats=exercise_stats|get_item:exercise.id %}
+                                            {% if stats.correct_count > 0 %}
+                                            <span class="badge bg-success d-block mb-2">
+                                                <i class="bi bi-check-circle"></i> Выполнено
+                                            </span>
+                                            {% else %}
+                                            <span class="badge bg-secondary d-block mb-2">
+                                                <i class="bi bi-circle"></i> Не выполнено
+                                            </span>
+                                            {% endif %}
+                                        {% endwith %}
+                                    {% else %}
+                                    <span class="badge bg-secondary d-block mb-2">
+                                        <i class="bi bi-circle"></i> Не выполнено
+                                    </span>
+                                    {% endif %}
+                                    <a href="{% url 'exercise_detail' lesson.slug exercise.id %}" 
+                                       class="btn btn-sm btn-primary">
+                                        <i class="bi bi-play"></i> Выполнить
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p class="text-muted">Упражнения для этого урока пока не добавлены.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Боковая панель -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm sticky-top" style="top: 80px;">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="bi bi-graph-up"></i> Прогресс
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if progress %}
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Баллы:</span>
+                            <strong>{{ progress.score }} / {{ progress.total_points }}</strong>
+                        </div>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar {% if progress.completed %}bg-success{% else %}bg-warning{% endif %}" 
+                                 role="progressbar" 
+                                 style="width: {{ progress.percentage }}%">
+                                {{ progress.percentage }}%
+                            </div>
+                        </div>
+                    </div>
+                    {% if progress.completed %}
+                    <div class="alert alert-success">
+                        <i class="bi bi-check-circle"></i> Урок завершен!
+                    </div>
+                    {% endif %}
+                    {% else %}
+                    <p class="text-muted">Начните выполнять упражнения, чтобы отслеживать прогресс.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+
+{% block title %}Упражнение - {{ lesson.title }} - EnglishApp{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-4">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Главная</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'category_detail' lesson.category.slug %}">{{ lesson.category.name }}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'lesson_detail' lesson.slug %}">{{ lesson.title }}</a></li>
+            <li class="breadcrumb-item active">Упражнение</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        <i class="bi bi-pencil-square"></i> Упражнение
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-info">
+                                <i class="bi bi-star"></i> {{ exercise.points }} баллов
+                            </span>
+                            <span class="badge bg-secondary">
+                                {{ exercise.get_exercise_type_display }}
+                            </span>
+                        </div>
+                        <h4 class="mb-3">{{ exercise.question }}</h4>
+                    </div>
+
+                    <form id="exerciseForm">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            {% if exercise.exercise_type == 'multiple_choice' %}
+                                <!-- Множественный выбор -->
+                                <div class="list-group">
+                                    {% for option in exercise.options %}
+                                    <label class="list-group-item">
+                                        <input type="radio" name="answer" value="{{ option }}" class="form-check-input me-2" required>
+                                        {{ option }}
+                                    </label>
+                                    {% endfor %}
+                                </div>
+                            {% elif exercise.exercise_type == 'fill_blank' %}
+                                <!-- Заполнение пропусков -->
+                                <div class="form-group">
+                                    <label for="answer" class="form-label">Введите ответ:</label>
+                                    <input type="text" name="answer" id="answer" class="form-control form-control-lg" 
+                                           placeholder="Ваш ответ..." required autofocus>
+                                </div>
+                            {% elif exercise.exercise_type == 'translation' %}
+                                <!-- Перевод -->
+                                <div class="form-group">
+                                    <label for="answer" class="form-label">Переведите на английский:</label>
+                                    <textarea name="answer" id="answer" class="form-control" rows="3" 
+                                              placeholder="Ваш перевод..." required autofocus></textarea>
+                                </div>
+                            {% else %}
+                                <!-- Обычный вопрос -->
+                                <div class="form-group">
+                                    <label for="answer" class="form-label">Ваш ответ:</label>
+                                    <input type="text" name="answer" id="answer" class="form-control form-control-lg" 
+                                           placeholder="Введите ответ..." required autofocus>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div id="resultAlert" class="alert d-none mb-3"></div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg flex-grow-1" id="submitBtn">
+                                <i class="bi bi-check-circle"></i> Проверить ответ
+                            </button>
+                            <a href="{% url 'lesson_detail' lesson.slug %}" class="btn btn-outline-secondary btn-lg">
+                                <i class="bi bi-arrow-left"></i> Назад
+                            </a>
+                        </div>
+                    </form>
+
+                    {% if previous_attempts %}
+                    <hr class="my-4">
+                    <h5 class="mb-3">
+                        <i class="bi bi-clock-history"></i> Предыдущие попытки
+                    </h5>
+                    <div class="list-group">
+                        {% for attempt in previous_attempts %}
+                        <div class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>Ваш ответ:</strong> {{ attempt.user_answer }}
+                                    {% if attempt.is_correct %}
+                                    <span class="badge bg-success ms-2">
+                                        <i class="bi bi-check"></i> Правильно
+                                    </span>
+                                    {% else %}
+                                    <span class="badge bg-danger ms-2">
+                                        <i class="bi bi-x"></i> Неправильно
+                                    </span>
+                                    {% endif %}
+                                </div>
+                                <small class="text-muted">{{ attempt.attempted_at|date:"d.m.Y H:i" }}</small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('exerciseForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const form = this;
+    const submitBtn = document.getElementById('submitBtn');
+    const resultAlert = document.getElementById('resultAlert');
+    const answerInput = form.querySelector('[name="answer"]');
+    
+    // Получаем ответ
+    let answer = '';
+    if (form.querySelector('[name="answer"]:checked')) {
+        answer = form.querySelector('[name="answer"]:checked').value;
+    } else if (answerInput) {
+        answer = answerInput.value.trim();
+    }
+    
+    if (!answer) {
+        resultAlert.className = 'alert alert-warning';
+        resultAlert.textContent = 'Пожалуйста, введите ответ';
+        resultAlert.classList.remove('d-none');
+        return;
+    }
+    
+    // Блокируем кнопку
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Проверка...';
+    
+    try {
+        const response = await fetch('{% url "submit_exercise" exercise.id %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify({ answer: answer })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            if (data.is_correct) {
+                resultAlert.className = 'alert alert-success';
+                resultAlert.innerHTML = `
+                    <h5><i class="bi bi-check-circle"></i> Правильно!</h5>
+                    <p class="mb-0">Вы заработали <strong>${data.points_earned}</strong> баллов!</p>
+                    ${data.explanation ? '<p class="mb-0 mt-2"><small>' + data.explanation + '</small></p>' : ''}
+                `;
+                
+                // Блокируем форму
+                form.querySelectorAll('input, textarea').forEach(input => {
+                    input.disabled = true;
+                });
+                
+                if (data.lesson_completed) {
+                    setTimeout(() => {
+                        alert('Поздравляем! Вы завершили урок!');
+                        window.location.href = '{% url "lesson_detail" lesson.slug %}';
+                    }, 2000);
+                }
+            } else {
+                resultAlert.className = 'alert alert-danger';
+                resultAlert.innerHTML = `
+                    <h5><i class="bi bi-x-circle"></i> Неправильно</h5>
+                    <p class="mb-1">Правильный ответ: <strong>${data.correct_answer}</strong></p>
+                    ${data.explanation ? '<p class="mb-0"><small>' + data.explanation + '</small></p>' : ''}
+                `;
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="bi bi-check-circle"></i> Проверить ответ';
+            }
+            resultAlert.classList.remove('d-none');
+        } else {
+            alert('Ошибка: ' + (data.error || 'Неизвестная ошибка'));
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="bi bi-check-circle"></i> Проверить ответ';
+        }
+    } catch (error) {
+        alert('Ошибка при отправке ответа: ' + error.message);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="bi bi-check-circle"></i> Проверить ответ';
+    }
+});
+</script>
+{% endblock %}
+

@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Настройки профиля - EnglishApp{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-4">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Главная</a></li>
+            <li class="breadcrumb-item active">Настройки профиля</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow-lg animate-fade-in">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        <i class="bi bi-gear"></i> Настройки профиля
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <!-- Статистика -->
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <div class="stat-box animate-slide-up" style="animation-delay: 0.1s;">
+                                <div class="stat-icon">
+                                    <i class="bi bi-person-circle"></i>
+                                </div>
+                                <h5 class="stat-value">{{ user.username }}</h5>
+                                <p class="stat-label">Имя пользователя</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="stat-box animate-slide-up" style="animation-delay: 0.2s;">
+                                <div class="stat-icon">
+                                    <i class="bi bi-book"></i>
+                                </div>
+                                <h5 class="stat-value">{{ completed_lessons }}/{{ total_lessons }}</h5>
+                                <p class="stat-label">Уроков завершено</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="stat-box animate-slide-up" style="animation-delay: 0.3s;">
+                                <div class="stat-icon">
+                                    <i class="bi bi-star"></i>
+                                </div>
+                                <h5 class="stat-value">{{ total_points }}</h5>
+                                <p class="stat-label">Всего баллов</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <!-- Форма редактирования профиля -->
+                    <h4 class="mb-3">
+                        <i class="bi bi-pencil-square"></i> Редактировать профиль
+                    </h4>
+                    <form method="post" class="animate-fade-in" style="animation-delay: 0.4s;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_username" class="form-label">Имя пользователя</label>
+                            <input type="text" class="form-control" id="id_username" 
+                                   value="{{ user.username }}" disabled>
+                            <small class="text-muted">Имя пользователя нельзя изменить</small>
+                        </div>
+                        {{ form|crispy }}
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg animate-bounce-on-hover">
+                                <i class="bi bi-check-circle"></i> Сохранить изменения
+                            </button>
+                        </div>
+                    </form>
+
+                    <hr class="my-4">
+
+                    <!-- Информация об аккаунте -->
+                    <div class="info-section animate-fade-in" style="animation-delay: 0.5s;">
+                        <h4 class="mb-3">
+                            <i class="bi bi-info-circle"></i> Информация об аккаунте
+                        </h4>
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong><i class="bi bi-calendar"></i> Дата регистрации:</strong>
+                                    </div>
+                                    <span>{{ date_joined|date:"d.m.Y H:i" }}</span>
+                                </div>
+                            </div>
+                            <div class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong><i class="bi bi-clock-history"></i> Последний вход:</strong>
+                                    </div>
+                                    <span>{{ user.last_login|date:"d.m.Y H:i"|default:"Никогда" }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <!-- Быстрые действия -->
+                    <div class="quick-actions animate-fade-in" style="animation-delay: 0.6s;">
+                        <h4 class="mb-3">
+                            <i class="bi bi-lightning"></i> Быстрые действия
+                        </h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <a href="{% url 'progress' %}" class="btn btn-outline-primary w-100 animate-scale-on-hover">
+                                    <i class="bi bi-graph-up"></i> Мой прогресс
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <a href="{% url 'home' %}" class="btn btn-outline-success w-100 animate-scale-on-hover">
+                                    <i class="bi bi-house"></i> На главную
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

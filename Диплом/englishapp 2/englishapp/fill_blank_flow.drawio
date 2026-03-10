@@ -1,0 +1,93 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Заполнение пропусков в тексте">
+    <mxGraphModel dx="827" dy="1169" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Блоки -->
+        <mxCell id="startFB" value="Старт упражнения &quot;Заполнение пропусков&quot;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="40" width="300" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="loadFB" value="Загрузить из БД предложение с пропуском и правильной формой слова" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="130" width="380" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="showFB" value="Отобразить предложение и поле для ввода ответа" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="230" width="380" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="userFB" value="Пользователь вводит слово / форму глагола" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="320" width="380" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sendFB" value="Отправить введённый ответ на сервер" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="410" width="380" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="normalizeFB" value="Сервер нормализует ответ (нижний регистр, обрезка пробелов) и нормализует правильный ответ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="500" width="380" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="decisionFB" value="Ответ совпадает с правильным?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="170" y="600" width="200" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="correctFB" value="Начислить баллы, обновить прогресс урока" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="80" y="700" width="380" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="wrongFB" value="Сохранить попытку как ошибочную, баллы = 0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="500" y="700" width="380" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="showResultFB" value="Показать пользователю результат, правильный ответ и объяснение" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="300" y="800" width="380" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="endFB" value="Упражнение завершено" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="320" y="910" width="260" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Стрелки -->
+        <mxCell id="efb1" edge="1" parent="1" source="startFB" target="loadFB" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="efb2" edge="1" parent="1" source="loadFB" target="showFB" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="efb3" edge="1" parent="1" source="showFB" target="userFB" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="efb4" edge="1" parent="1" source="userFB" target="sendFB" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="efb5" edge="1" parent="1" source="sendFB" target="normalizeFB" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="efb6" edge="1" parent="1" source="normalizeFB" target="decisionFB" style="endArrow=block;strokeColor=#d6b656;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="efb7" edge="1" parent="1" source="decisionFB" target="correctFB" style="endArrow=block;strokeColor=#82b366;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="efb8" edge="1" parent="1" source="decisionFB" target="wrongFB" style="endArrow=block;strokeColor=#b85450;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="efb9" edge="1" parent="1" source="correctFB" target="showResultFB" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="efb10" edge="1" parent="1" source="wrongFB" target="showResultFB" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="efb11" edge="1" parent="1" source="showResultFB" target="endFB" style="endArrow=block;strokeColor=#9673a6;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,104 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="29.2.1">
+  <diagram name="ER Diagram" id="er-diagram">
+    <mxGraphModel dx="946" dy="636" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=28;fontStyle=1;fontColor=#1a1a1a;" value="ER-ДИАГРАММА БАЗЫ ДАННЫХ EnglishApp" vertex="1">
+          <mxGeometry height="50" width="800" x="600" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="auth_user" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;align=left;verticalAlign=top;spacingLeft=5;spacingTop=5;" value="&lt;b&gt;auth_user&lt;/b&gt;&lt;hr&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;0&quot; style=&quot;width:100%&quot;&gt;&lt;tr&gt;&lt;td align=&quot;left&quot; bgcolor=&quot;#ffcccc&quot;&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;username&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;email&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;password&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;first_name&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;last_name&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;is_staff&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;is_superuser&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;is_active&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;date_joined&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;last_login&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="320" width="200" x="50" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="lessoncategory" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=left;verticalAlign=top;spacingLeft=5;spacingTop=5;" value="&lt;b&gt;lessons_lessoncategory&lt;/b&gt;&lt;hr&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;0&quot; style=&quot;width:100%&quot;&gt;&lt;tr&gt;&lt;td align=&quot;left&quot; bgcolor=&quot;#ffcccc&quot;&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot; bgcolor=&quot;#ccffcc&quot;&gt;&lt;b&gt;UQ&lt;/b&gt; slug&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;name&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;icon&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;order&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="200" width="250" x="400" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="lesson" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;verticalAlign=top;spacingLeft=5;spacingTop=5;" value="&lt;b&gt;lessons_lesson&lt;/b&gt;&lt;hr&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;0&quot; style=&quot;width:100%&quot;&gt;&lt;tr&gt;&lt;td align=&quot;left&quot; bgcolor=&quot;#ffcccc&quot;&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot; bgcolor=&quot;#ccccff&quot;&gt;&lt;b&gt;FK&lt;/b&gt; category_id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot; bgcolor=&quot;#ccffcc&quot;&gt;&lt;b&gt;UQ&lt;/b&gt; slug&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;title&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;description&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;theory&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;examples&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;order&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;is_active&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;created_at&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="280" width="250" x="750" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="exercise" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;align=left;verticalAlign=top;spacingLeft=5;spacingTop=5;" value="&lt;b&gt;lessons_exercise&lt;/b&gt;&lt;hr&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;0&quot; style=&quot;width:100%&quot;&gt;&lt;tr&gt;&lt;td align=&quot;left&quot; bgcolor=&quot;#ffcccc&quot;&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot; bgcolor=&quot;#ccccff&quot;&gt;&lt;b&gt;FK&lt;/b&gt; lesson_id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;exercise_type&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;question&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;correct_answer&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;options (JSON)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;explanation&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;order&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;points&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="280" width="250" x="1100" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="userprogress" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;verticalAlign=top;spacingLeft=5;spacingTop=5;" value="&lt;b&gt;lessons_userprogress&lt;/b&gt;&lt;hr&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;0&quot; style=&quot;width:100%&quot;&gt;&lt;tr&gt;&lt;td align=&quot;left&quot; bgcolor=&quot;#ffcccc&quot;&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot; bgcolor=&quot;#ccccff&quot;&gt;&lt;b&gt;FK&lt;/b&gt; user_id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot; bgcolor=&quot;#ccccff&quot;&gt;&lt;b&gt;FK&lt;/b&gt; lesson_id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot; bgcolor=&quot;#ccffcc&quot;&gt;&lt;b&gt;UQ&lt;/b&gt; (user_id, lesson_id)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;completed&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;score&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;total_points&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;started_at&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;completed_at&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="280" width="300" x="50" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="userexerciseattempt" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;align=left;verticalAlign=top;spacingLeft=5;spacingTop=5;" value="&lt;b&gt;lessons_userexerciseattempt&lt;/b&gt;&lt;hr&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;0&quot; style=&quot;width:100%&quot;&gt;&lt;tr&gt;&lt;td align=&quot;left&quot; bgcolor=&quot;#ffcccc&quot;&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot; bgcolor=&quot;#ccccff&quot;&gt;&lt;b&gt;FK&lt;/b&gt; user_id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot; bgcolor=&quot;#ccccff&quot;&gt;&lt;b&gt;FK&lt;/b&gt; exercise_id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;user_answer&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;is_correct&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;points_earned&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;attempted_at&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="240" width="300" x="400" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="rel1" edge="1" parent="1" source="auth_user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#666666;endArrow=ERmany;endFill=1;startArrow=ERone;startFill=1;" target="userprogress" value="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel1-label" connectable="0" parent="rel1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#333333;" value="user" vertex="1">
+          <mxGeometry relative="1" x="-0.1" y="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel2" edge="1" parent="1" source="auth_user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#666666;endArrow=ERmany;endFill=1;startArrow=ERone;startFill=1;" target="userexerciseattempt" value="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel2-label" connectable="0" parent="rel2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#333333;" value="user" vertex="1">
+          <mxGeometry relative="1" x="-0.1" y="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel3" edge="1" parent="1" source="lessoncategory" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#666666;endArrow=ERmany;endFill=1;startArrow=ERone;startFill=1;" target="lesson" value="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel3-label" connectable="0" parent="rel3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#333333;" value="category" vertex="1">
+          <mxGeometry relative="1" x="-0.1" y="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel4" edge="1" parent="1" source="lesson" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#666666;endArrow=ERmany;endFill=1;startArrow=ERone;startFill=1;" target="exercise" value="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel4-label" connectable="0" parent="rel4" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#333333;" value="lesson" vertex="1">
+          <mxGeometry relative="1" x="-0.1" y="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel5" edge="1" parent="1" source="lesson" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#666666;endArrow=ERmany;endFill=1;startArrow=ERone;startFill=1;" target="userprogress" value="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="875" y="500" />
+              <mxPoint x="875" y="640" />
+              <mxPoint x="200" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel5-label" connectable="0" parent="rel5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#333333;" value="lesson" vertex="1">
+          <mxGeometry relative="1" x="-0.1" y="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel6" edge="1" parent="1" source="exercise" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#666666;endArrow=ERmany;endFill=1;startArrow=ERone;startFill=1;" target="userexerciseattempt" value="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1225" y="500" />
+              <mxPoint x="1225" y="620" />
+              <mxPoint x="550" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel6-label" connectable="0" parent="rel6" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontColor=#333333;" value="exercise" vertex="1">
+          <mxGeometry relative="1" x="-0.1" y="1" as="geometry">
+            <mxPoint x="10" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;" value="&lt;b&gt;УСЛОВНЫЕ ОБОЗНАЧЕНИЯ&lt;/b&gt;&lt;hr&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;0&quot; style=&quot;width:100%&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#ffcccc&quot; width=&quot;30&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;PK&lt;/b&gt; - Primary Key (Первичный ключ)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#ccccff&quot; width=&quot;30&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;FK&lt;/b&gt; - Foreign Key (Внешний ключ)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#ccffcc&quot; width=&quot;30&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;UQ&lt;/b&gt; - Unique (Уникальное значение)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;One (Один)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;N&lt;/td&gt;&lt;td&gt;Many (Много)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="200" width="300" x="1450" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-desc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;" value="&lt;b&gt;ОПИСАНИЕ СВЯЗЕЙ&lt;/b&gt;&lt;hr&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;3&quot; cellspacing=&quot;0&quot; style=&quot;width:100%;font-size:10px;&quot;&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;1.&lt;/b&gt; User (1) → UserProgress (N)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Один пользователь имеет прогресс по многим урокам&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;2.&lt;/b&gt; User (1) → UserExerciseAttempt (N)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Один пользователь делает много попыток&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;3.&lt;/b&gt; LessonCategory (1) → Lesson (N)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Одна категория содержит много уроков&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;4.&lt;/b&gt; Lesson (1) → Exercise (N)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Один урок содержит много упражнений&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;5.&lt;/b&gt; Lesson (1) → UserProgress (N)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Один урок имеет прогресс от многих пользователей&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;6.&lt;/b&gt; Exercise (1) → UserExerciseAttempt (N)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Одно упражнение имеет много попыток&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="460" width="500" x="1450" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="colors-info" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;" value="&lt;b&gt;ЦВЕТОВАЯ СХЕМА ТАБЛИЦ&lt;/b&gt;&lt;hr&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;5&quot; cellspacing=&quot;0&quot; style=&quot;width:100%&quot;&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#fff2cc&quot; width=&quot;30&quot;&gt;&lt;/td&gt;&lt;td&gt;auth_user (Django встроенная)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#d5e8d4&quot; width=&quot;30&quot;&gt;&lt;/td&gt;&lt;td&gt;lessons_lessoncategory&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#dae8fc&quot; width=&quot;30&quot;&gt;&lt;/td&gt;&lt;td&gt;lessons_lesson&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#e1d5e7&quot; width=&quot;30&quot;&gt;&lt;/td&gt;&lt;td&gt;lessons_exercise&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#f8cecc&quot; width=&quot;30&quot;&gt;&lt;/td&gt;&lt;td&gt;lessons_userprogress&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td bgcolor=&quot;#ffe6cc&quot; width=&quot;30&quot;&gt;&lt;/td&gt;&lt;td&gt;lessons_userexerciseattempt&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="200" width="500" x="1450" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="constraints" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;" value="&lt;b&gt;ОГРАНИЧЕНИЯ И ИНДЕКСЫ&lt;/b&gt;&lt;hr&gt;&lt;table border=&quot;0&quot; cellpadding=&quot;3&quot; cellspacing=&quot;0&quot; style=&quot;width:100%;font-size:10px;&quot;&gt;&lt;tr&gt;&lt;td&gt;• UNIQUE: lessons_lessoncategory.slug&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;• UNIQUE: lessons_lesson.slug&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;• UNIQUE: lessons_userprogress(user_id, lesson_id)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;• INDEX: lessons_lesson.category_id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;• INDEX: lessons_exercise.lesson_id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;• INDEX: lessons_userprogress.user_id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;• INDEX: lessons_userprogress.lesson_id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;• INDEX: lessons_userexerciseattempt.user_id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;• INDEX: lessons_userexerciseattempt.exercise_id&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;• INDEX: lessons_userexerciseattempt.attempted_at&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;• CASCADE DELETE на всех FK&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="280" width="350" x="750" y="500" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+

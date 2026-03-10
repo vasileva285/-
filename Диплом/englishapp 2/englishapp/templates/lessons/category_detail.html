@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load lesson_tags %}
+
+{% block title %}{{ category.name }} - EnglishApp{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-4">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Главная</a></li>
+            <li class="breadcrumb-item active">{{ category.name }}</li>
+        </ol>
+    </nav>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card bg-gradient-primary text-white">
+                <div class="card-body p-5">
+                    <div class="d-flex align-items-center">
+                        <span style="font-size: 4rem;" class="me-4">{{ category.icon }}</span>
+                        <div>
+                            <h1 class="display-5 mb-2">{{ category.name }}</h1>
+                            <p class="lead mb-0">{{ category.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="mb-4">
+        <i class="bi bi-list-ul"></i> Уроки
+    </h2>
+
+    <div class="row">
+        {% for lesson in lessons %}
+        <div class="col-md-6 mb-4">
+            <div class="card lesson-card h-100 shadow-sm animate-slide-up">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h4 class="card-title mb-1">
+                                <a href="{% url 'lesson_detail' lesson.slug %}" class="text-decoration-none">
+                                    {{ lesson.title }}
+                                </a>
+                            </h4>
+                            <p class="text-muted mb-0">
+                                <small>{{ lesson.description|truncatewords:20 }}</small>
+                            </p>
+                        </div>
+                        {% if lesson.is_completed %}
+                        <span class="badge bg-success">
+                            <i class="bi bi-check-circle"></i>
+                        </span>
+                        {% elif lesson.user_progress_obj %}
+                        <span class="badge bg-warning">
+                            <i class="bi bi-clock"></i>
+                        </span>
+                        {% endif %}
+                    </div>
+                    
+                    {% if lesson.user_progress_obj %}
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <small class="text-muted">Прогресс</small>
+                            <small class="text-muted">
+                                {{ lesson.user_score }} / {{ lesson.user_progress_obj.total_points }} баллов
+                            </small>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar" role="progressbar" 
+                                 style="width: {{ lesson.progress_percentage }}%">
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'lesson_detail' lesson.slug %}" class="btn btn-primary flex-grow-1 animate-scale-on-hover">
+                            <i class="bi bi-play-circle"></i> 
+                            {% if lesson.user_progress_obj %}Продолжить{% else %}Начать{% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle"></i> Уроки в этой категории пока не добавлены.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

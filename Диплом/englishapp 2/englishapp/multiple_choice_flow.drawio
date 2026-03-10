@@ -1,0 +1,97 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Мини-тест с выбором слов">
+    <mxGraphModel dx="827" dy="1169" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Блоки -->
+        <mxCell id="startMC" value="Старт мини-теста с выбором слова" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="40" width="280" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="loadMC" value="Загрузить задание: предложение с пропуском и список вариантов слов" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="130" width="360" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="showMC" value="Показать предложение и варианты (кнопки/радио)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="230" width="360" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="userMC" value="Пользователь выбирает один вариант ответа" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="320" width="360" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="sendMC" value="Отправить выбранный вариант на сервер" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="410" width="360" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="checkMC" value="Сервер сравнивает выбранный вариант с правильным ответом" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="500" width="360" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="decisionMC" value="Ответ правильный?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="160" y="590" width="200" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="correctMC" value="Начислить баллы, обновить прогресс урока" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="80" y="700" width="360" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="wrongMC" value="Сохранить попытку как ошибочную, баллы = 0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="480" y="700" width="360" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="showResultMC" value="Показать пользователю результат, правильный вариант и объяснение" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="280" y="800" width="360" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="endMC" value="Мини-тест завершён или переход к следующему заданию" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="300" y="910" width="320" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Стрелки -->
+        <mxCell id="emc1" edge="1" parent="1" source="startMC" target="loadMC" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="emc2" edge="1" parent="1" source="loadMC" target="showMC" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="emc3" edge="1" parent="1" source="showMC" target="userMC" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="emc4" edge="1" parent="1" source="userMC" target="sendMC" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="emc5" edge="1" parent="1" source="sendMC" target="checkMC" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="emc6" edge="1" parent="1" source="checkMC" target="decisionMC" style="endArrow=block;strokeColor=#d6b656;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="emc7" edge="1" parent="1" source="decisionMC" target="correctMC" style="endArrow=block;strokeColor=#82b366;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="260" y="690" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="emc8" edge="1" parent="1" source="decisionMC" target="wrongMC" style="endArrow=block;strokeColor=#b85450;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="560" y="730" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="emc9" edge="1" parent="1" source="correctMC" target="showResultMC" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="emc10" edge="1" parent="1" source="wrongMC" target="showResultMC" style="endArrow=block;strokeColor=#6c8ebf;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="emc11" edge="1" parent="1" source="showResultMC" target="endMC" style="endArrow=block;strokeColor=#9673a6;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
